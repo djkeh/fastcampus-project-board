@@ -1,10 +1,12 @@
 package com.fastcampus.projectboard.controller;
 
+import com.fastcampus.projectboard.config.SecurityConfig;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -12,6 +14,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @DisplayName("View 컨트롤러 - 게시글")
+@Import(SecurityConfig.class)
 @WebMvcTest(ArticleController.class)
 class ArticleControllerTest {
 
@@ -20,6 +23,7 @@ class ArticleControllerTest {
     public ArticleControllerTest(@Autowired MockMvc mvc) {
         this.mvc = mvc;
     }
+
 
     @DisplayName("[view][GET] 게시글 리스트 (게시판) 페이지 - 정상 호출")
     @Test
