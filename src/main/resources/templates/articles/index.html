@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Uno Kim">
+  <title>게시판 페이지</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <link href="/css/search-bar.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <header id="header"></header>
+
+  <main class="container">
+
+    <div class="row">
+      <div class="card card-margin search-form">
+        <div class="card-body p-0">
+          <form id="card search-form">
+            <div class="row">
+              <div class="col-12">
+                <div class="row no-gutters">
+                  <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                    <label for="search-type" hidden>검색 유형</label>
+                    <select class="form-control" id="search-type">
+                      <option>제목</option>
+                      <option>본문</option>
+                      <option>id</option>
+                      <option>닉네임</option>
+                      <option>해시태그</option>
+                    </select>
+                  </div>
+                  <div class="col-lg-8 col-md-6 col-sm-12 p-0">
+                    <label for="search-value" hidden>검색어</label>
+                    <input type="text" placeholder="검색어..." class="form-control" id="search-value" name="search-value">
+                  </div>
+                  <div class="col-lg-1 col-md-3 col-sm-12 p-0">
+                    <button type="submit" class="btn btn-base">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="col-6">제목</th>
+          <th class="col-2">해시태그</th>
+          <th class="col">작성자</th>
+          <th class="col">작성일</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>첫글</td>
+          <td>#java</td>
+          <td>Uno</td>
+          <td>2022-01-01</td>
+        </tr>
+        <tr>
+          <td>두번째글</td>
+          <td>#spring</td>
+          <td>Uno</td>
+          <td>2022-01-02</td>
+        </tr>
+        <tr>
+          <td>세번째글</td>
+          <td>#java</td>
+          <td>Uno</td>
+          <td>2022-01-03</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+      </ul>
+    </nav>
+  </main>
+
+  <footer id="footer"></footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>

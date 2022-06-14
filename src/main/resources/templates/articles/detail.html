@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Uno Kim">
+  <title>게시글 페이지</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <header id="header"></header>
+
+  <main class="container">
+    <header class="py-5 text-center">
+      <h1>첫번째 글</h1>
+    </header>
+
+    <div class="row g-5">
+      <section class="col-md-5 col-lg-4 order-md-last">
+        <aside>
+          <p><span class="nick-name">Uno</span></p>
+          <p><a class="u-url" rel="me" href="mailto:djkehh@gmail.com">uno@mail.com</a></p>
+          <p><time datetime="2022-01-01T00:00:00">2022-01-01</time></p>
+          <p>#java</p>
+        </aside>
+      </section>
+
+      <article class="col-md-7 col-lg-8">
+        <p>본문<br><br></p>
+      </article>
+    </div>
+
+    <div class="row g-5">
+      <section>
+        <form class="row g-3">
+          <div class="col-8">
+            <label for="comment-textbox" hidden>댓글</label>
+            <textarea class="form-control" id="comment-textbox" placeholder="댓글 쓰기.." rows="3"></textarea>
+          </div>
+          <div class="col-auto">
+            <label for="comment-submit" hidden>댓글 쓰기</label>
+            <button class="btn btn-primary" id="comment-submit" type="submit">쓰기</button>
+          </div>
+        </form>
+
+        <ul>
+          <li>
+            <div>
+              <time><small>2022-01-01</small></time>
+              <strong>Uno</strong>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>
+                Lorem ipsum dolor sit amet
+              </p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <time><small>2022-01-01</small></time>
+              <strong>Uno</strong>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>
+                Lorem ipsum dolor sit amet
+              </p>
+            </div>
+          </li>
+        </ul>
+
+      </section>
+    </div>
+
+    <div class="row g-5">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Previous">
+              <span aria-hidden="true">&laquo; prev</span>
+            </a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next">
+              <span aria-hidden="true">next &raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+  </main>
+
+  <footer id="footer"></footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>
