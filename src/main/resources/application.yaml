@@ -14,6 +14,7 @@ spring:
     password: thisisTESTpw!#%&
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
+    open-in-view: false
     defer-datasource-initialization: true
     hibernate.ddl-auto: create
     show-sql: true
