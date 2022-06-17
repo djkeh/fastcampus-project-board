@@ -13,24 +13,27 @@
 
 <body>
 
-  <header id="header"></header>
+  <header id="header">
+    헤더 삽입부
+    <hr>
+  </header>
 
-  <main class="container">
-    <header class="py-5 text-center">
+  <main id="article-main" class="container">
+    <header id="article-header" class="py-5 text-center">
       <h1>첫번째 글</h1>
     </header>
 
     <div class="row g-5">
       <section class="col-md-5 col-lg-4 order-md-last">
         <aside>
-          <p><span>Uno</span></p>
-          <p><a href="mailto:djkehh@gmail.com">uno@mail.com</a></p>
-          <p><time datetime="2022-01-01T00:00:00">2022-01-01</time></p>
-          <p><span>#java</span></p>
+          <p><span id="nickname">Uno</span></p>
+          <p><a id="email" href="mailto:djkehh@gmail.com">uno@mail.com</a></p>
+          <p><time id="created-at" datetime="2022-01-01T00:00:00">2022-01-01</time></p>
+          <p><span id="hashtag">#java</span></p>
         </aside>
       </section>
 
-      <article class="col-md-7 col-lg-8">
+      <article id="article-content" class="col-md-7 col-lg-8">
         <pre>본문<br><br></pre>
       </article>
     </div>
@@ -48,7 +51,7 @@
           </div>
         </form>
 
-        <ul class="row col-7">
+        <ul id="article-comments" class="row col-7">
           <li>
             <div>
               <strong>Uno</strong>
@@ -93,7 +96,10 @@
 
   </main>
 
-  <footer id="footer"></footer>
+  <footer id="footer">
+    <hr>
+    푸터 삽입부
+  </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
