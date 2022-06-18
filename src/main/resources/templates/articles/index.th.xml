@@ -4,23 +4,41 @@
   <attr sel="#footer" th:replace="footer :: footer" />
 
   <attr sel="main" th:object="${articles}">
+    <attr sel="#search-type" th:remove="all-but-first">
+      <attr sel="option[0]"
+            th:each="searchType : ${searchTypes}"
+            th:value="${searchType.name}"
+            th:text="${searchType.description}"
+            th:selected="${param.searchType != null && (param.searchType.toString == searchType.name)}"
+      />
+    </attr>
+    <attr sel="#search-value" th:value="${param.searchValue}" />
+
     <attr sel="#article-table">
       <attr sel="thead/tr">
         <attr sel="th.title/a" th:text="'제목'" th:href="@{/articles(
             page=${articles.number},
-            sort='title' + (*{sort.getOrderFor('title')} != null ? (*{sort.getOrderFor('title').direction.name} != 'DESC' ? ',desc' : '') : '')
+            sort='title' + (*{sort.getOrderFor('title')} != null ? (*{sort.getOrderFor('title').direction.name} != 'DESC' ? ',desc' : '') : ''),
+            searchType=${param.searchType},
+            searchValue=${param.searchValue}
         )}"/>
         <attr sel="th.hashtag/a" th:text="'해시태그'" th:href="@{/articles(
             page=${articles.number},
-            sort='hashtag' + (*{sort.getOrderFor('hashtag')} != null ? (*{sort.getOrderFor('hashtag').direction.name} != 'DESC' ? ',desc' : '') : '')
+            sort='hashtag' + (*{sort.getOrderFor('hashtag')} != null ? (*{sort.getOrderFor('hashtag').direction.name} != 'DESC' ? ',desc' : '') : ''),
+            searchType=${param.searchType},
+            searchValue=${param.searchValue}
         )}"/>
         <attr sel="th.user-id/a" th:text="'작성자'" th:href="@{/articles(
             page=${articles.number},
-            sort='userAccount.userId' + (*{sort.getOrderFor('userAccount.userId')} != null ? (*{sort.getOrderFor('userAccount.userId').direction.name} != 'DESC' ? ',desc' : '') : '')
+            sort='userAccount.userId' + (*{sort.getOrderFor('userAccount.userId')} != null ? (*{sort.getOrderFor('userAccount.userId').direction.name} != 'DESC' ? ',desc' : '') : ''),
+            searchType=${param.searchType},
+            searchValue=${param.searchValue}
         )}"/>
         <attr sel="th.created-at/a" th:text="'작성일'" th:href="@{/articles(
             page=${articles.number},
-            sort='createdAt' + (*{sort.getOrderFor('createdAt')} != null ? (*{sort.getOrderFor('createdAt').direction.name} != 'DESC' ? ',desc' : '') : '')
+            sort='createdAt' + (*{sort.getOrderFor('createdAt')} != null ? (*{sort.getOrderFor('createdAt').direction.name} != 'DESC' ? ',desc' : '') : ''),
+            searchType=${param.searchType},
+            searchValue=${param.searchValue}
         )}"/>
       </attr>
 
@@ -37,19 +55,19 @@
     <attr sel="#pagination">
       <attr sel="li[0]/a"
             th:text="'previous'"
-            th:href="@{/articles(page=${articles.number - 1})}"
+            th:href="@{/articles(page=${articles.number - 1}, searchType=${param.searchType}, searchValue=${param.searchValue})}"
             th:class="'page-link' + (${articles.number} <= 0 ? ' disabled' : '')"
       />
       <attr sel="li[1]" th:class="page-item" th:each="pageNumber : ${paginationBarNumbers}">
         <attr sel="a"
               th:text="${pageNumber + 1}"
-              th:href="@{/articles(page=${pageNumber})}"
+              th:href="@{/articles(page=${pageNumber}, searchType=${param.searchType}, searchValue=${param.searchValue})}"
               th:class="'page-link' + (${pageNumber} == ${articles.number} ? ' disabled' : '')"
         />
       </attr>
       <attr sel="li[2]/a"
             th:text="'next'"
-            th:href="@{/articles(page=${articles.number + 1})}"
+            th:href="@{/articles(page=${articles.number + 1}, searchType=${param.searchType}, searchValue=${param.searchValue})}"
             th:class="'page-link' + (${articles.number} >= ${articles.totalPages - 1} ? ' disabled' : '')"
       />
     </attr>
