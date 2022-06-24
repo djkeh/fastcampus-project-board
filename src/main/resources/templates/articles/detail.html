@@ -49,10 +49,11 @@
 
     <div class="row g-5">
       <section>
-        <form class="row g-3">
+        <form class="row g-3" id="comment-form">
+          <input type="hidden" class="article-id">
           <div class="col-md-9 col-lg-8">
             <label for="comment-textbox" hidden>댓글</label>
-            <textarea class="form-control" id="comment-textbox" placeholder="댓글 쓰기.." rows="3"></textarea>
+            <textarea class="form-control" id="comment-textbox" placeholder="댓글 쓰기.." rows="3" required></textarea>
           </div>
           <div class="col-md-3 col-lg-4">
             <label for="comment-submit" hidden>댓글 쓰기</label>
@@ -62,18 +63,26 @@
 
         <ul id="article-comments" class="row col-md-10 col-lg-8 pt-3">
           <li>
-            <div class="row">
-              <strong>Uno</strong>
-              <small><time>2022-01-01</time></small>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>
-                Lorem ipsum dolor sit amet
-              </p>
-            </div>
+            <form class="comment-form">
+              <input type="hidden" class="article-id">
+              <div class="row">
+                <div class="col-md-10 col-lg-9">
+                  <strong>Uno</strong>
+                  <small><time>2022-01-01</time></small>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>
+                    Lorem ipsum dolor sit amet
+                  </p>
+                </div>
+                <div class="col-2 mb-3">
+                  <button type="submit" class="btn btn-outline-danger" id="delete-comment-button">삭제</button>
+                </div>
+              </div>
+            </form>
           </li>
           <li>
-            <div class="row">
-              <strong>Uno2</strong>
+            <div>
+              <strong>Uno</strong>
               <small><time>2022-01-01</time></small>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>
