@@ -17,11 +17,18 @@
       </attr>
     </attr>
 
+    <attr sel=".article-id" th:name="articleId" th:value="*{id}" />
+    <attr sel="#comment-form" th:action="@{/comments/new}" th:method="post">
+      <attr sel="#comment-textbox" th:name="content" />
+    </attr>
+
     <attr sel="#article-comments" th:remove="all-but-first">
       <attr sel="li[0]" th:each="articleComment : ${articleComments}">
-        <attr sel="div/strong" th:text="${articleComment.nickname}" />
-        <attr sel="div/small/time" th:datetime="${articleComment.createdAt}" th:text="${#temporals.format(articleComment.createdAt, 'yyyy-MM-dd HH:mm:ss')}" />
-        <attr sel="div/p" th:text="${articleComment.content}" />
+        <attr sel="form" th:action="'/comments/' + ${articleComment.id} + '/delete'" th:method="post">
+          <attr sel="div/strong" th:text="${articleComment.nickname}" />
+          <attr sel="div/small/time" th:datetime="${articleComment.createdAt}" th:text="${#temporals.format(articleComment.createdAt, 'yyyy-MM-dd HH:mm:ss')}" />
+          <attr sel="div/p" th:text="${articleComment.content}" />
+        </attr>
       </attr>
     </attr>
 
