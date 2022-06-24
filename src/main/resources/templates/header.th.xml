@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<thlogic>
+  <attr sel="#home" th:href="@{/}" />
+  <attr sel="#hashtag" th:href="@{/articles/search-hashtag}" />
+</thlogic>
