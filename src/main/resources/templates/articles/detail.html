@@ -24,7 +24,7 @@
     </header>
 
     <div class="row g-5">
-      <section class="col-md-5 col-lg-4 order-md-last">
+      <section class="col-md-3 col-lg-4 order-md-last">
         <aside>
           <p><span id="nickname">Uno</span></p>
           <p><a id="email" href="mailto:djkehh@gmail.com">uno@mail.com</a></p>
@@ -33,27 +33,36 @@
         </aside>
       </section>
 
-      <article id="article-content" class="col-md-7 col-lg-8">
+      <article id="article-content" class="col-md-9 col-lg-8">
         <pre>본문</pre>
       </article>
+    </div>
+
+    <div class="row g-5" id="article-buttons">
+      <form id="delete-article-form">
+        <div class="pb-5 d-grid gap-2 d-md-block">
+          <a class="btn btn-success me-md-2" role="button" id="update-article">수정</a>
+          <button class="btn btn-danger me-md-2" type="submit">삭제</button>
+        </div>
+      </form>
     </div>
 
     <div class="row g-5">
       <section>
         <form class="row g-3">
-          <div class="col-8">
+          <div class="col-md-9 col-lg-8">
             <label for="comment-textbox" hidden>댓글</label>
             <textarea class="form-control" id="comment-textbox" placeholder="댓글 쓰기.." rows="3"></textarea>
           </div>
-          <div class="col-auto">
+          <div class="col-md-3 col-lg-4">
             <label for="comment-submit" hidden>댓글 쓰기</label>
             <button class="btn btn-primary" id="comment-submit" type="submit">쓰기</button>
           </div>
         </form>
 
-        <ul id="article-comments" class="row col-7">
+        <ul id="article-comments" class="row col-md-10 col-lg-8 pt-3">
           <li>
-            <div>
+            <div class="row">
               <strong>Uno</strong>
               <small><time>2022-01-01</time></small>
               <p>
@@ -63,8 +72,8 @@
             </div>
           </li>
           <li>
-            <div>
-              <strong>Uno</strong>
+            <div class="row">
+              <strong>Uno2</strong>
               <small><time>2022-01-01</time></small>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>
