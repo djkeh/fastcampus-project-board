@@ -13,7 +13,6 @@
 </head>
 
 <body>
-
   <header id="header">
     헤더 삽입부
     <hr>
@@ -24,7 +23,7 @@
     <div class="row">
       <div class="card card-margin search-form">
         <div class="card-body p-0">
-          <form action="/articles" method="get">
+          <form id="search-form">
             <div class="row">
               <div class="col-12">
                 <div class="row no-gutters">
@@ -58,16 +57,17 @@
       </div>
     </div>
 
-    <table class="table" id="article-table">
-      <thead>
+    <div class="row">
+      <table class="table" id="article-table">
+        <thead>
         <tr>
           <th class="title col-6"><a>제목</a></th>
           <th class="hashtag col-2"><a>해시태그</a></th>
-          <th class="user-id col"><a>작성자</a></th>
-          <th class="created-at col"><a>작성일</a></th>
+          <th class="user-id"><a>작성자</a></th>
+          <th class="created-at"><a>작성일</a></th>
         </tr>
-      </thead>
-      <tbody>
+        </thead>
+        <tbody>
         <tr>
           <td class="title"><a>첫글</a></td>
           <td class="hashtag">#java</td>
@@ -86,16 +86,25 @@
           <td>Uno</td>
           <td><time>2022-01-03</time></td>
         </tr>
-      </tbody>
-    </table>
+        </tbody>
+      </table>
+    </div>
 
-    <nav id="pagination" aria-label="Page navigation">
-      <ul class="pagination justify-content-center">
-        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">Next</a></li>
-      </ul>
-    </nav>
+    <div class="row">
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <a class="btn btn-primary me-md-2" role="button" id="write-article">글쓰기</a>
+      </div>
+    </div>
+
+    <div class="row">
+      <nav id="pagination" aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+          <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+      </nav>
+    </div>
   </main>
 
   <footer id="footer">
