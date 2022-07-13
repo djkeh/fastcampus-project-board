@@ -47,5 +47,5 @@ Spring Boot
 
 ## Reference
 
-* 유즈케이스 다이어그램: #4, https://viewer.diagrams.net/#Uhttps%3A%2F%2Fraw.githubusercontent.com%2Fdjkeh%2Ffastcampus-project-board%2Fmain%2Fdocument%2Fuse-case.svg
-* API Endpoint 구글 시트: #1, https://docs.google.com/spreadsheets/d/1S2FW7_LlePGF95strSYFJEsEQKoyZ9nGHWM8wZgFmSU/edit?usp=sharing
+* 유즈케이스 다이어그램: [#4](https://github.com/djkeh/fastcampus-project-board/issues/4), https://viewer.diagrams.net/#Uhttps%3A%2F%2Fraw.githubusercontent.com%2Fdjkeh%2Ffastcampus-project-board%2Fmain%2Fdocument%2Fuse-case.svg
+* API Endpoint 구글 시트: [#1](https://github.com/djkeh/fastcampus-project-board/issues/1), https://docs.google.com/spreadsheets/d/1S2FW7_LlePGF95strSYFJEsEQKoyZ9nGHWM8wZgFmSU/edit?usp=sharing
