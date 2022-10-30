@@ -28,20 +28,24 @@
       <attr sel=".comment-textbox" th:name="content" />
     </attr>
 
-    <attr sel=".article-comments"
-          th:remove="all-but-first"
-          th:fragment="articleComments(childComments)"
-          th:classappend="${childComments} != null ? 'row me-0' : 'row col-md-10 col-lg-8 pt-3'"
-    >
-      <attr sel=".article-comment[0]" th:each="articleComment : ${childComments} ?: ${articleComments}">
+    <attr sel="#article-comments" th:remove="all-but-first">
+      <attr sel=".parent-comment[0]" th:each="articleComment : ${articleComments}">
         <attr sel=".comment-delete-form" th:action="'/comments/' + ${articleComment.id} + '/delete'" th:method="post">
           <attr sel="div/strong" th:text="${articleComment.nickname}" />
           <attr sel="div/small/time" th:datetime="${articleComment.createdAt}" th:text="${#temporals.format(articleComment.createdAt, 'yyyy-MM-dd HH:mm:ss')}" />
           <attr sel="div/p" th:text="${articleComment.content}" />
           <attr sel="button" th:if="${#authorization.expression('isAuthenticated()')} and ${articleComment.userId} == ${#authentication.name}" />
         </attr>
-
-        <attr sel=".child-comments" th:unless="${articleComment.childComments.isEmpty}" th:replace=":: articleComments(${articleComment.childComments})" />
+        <attr sel="ul" th:if="${!articleComment.childComments.isEmpty}" th:remove="all-but-first">
+          <attr sel=".child-comment[0]" th:each="childComment : ${articleComment.childComments}">
+            <attr sel=".comment-delete-form" th:action="'/comments/' + ${childComment.id} + '/delete'" th:method="post">
+              <attr sel="div/strong" th:text="${childComment.nickname}" />
+              <attr sel="div/small/time" th:datetime="${childComment.createdAt}" th:text="${#temporals.format(childComment.createdAt, 'yyyy-MM-dd HH:mm:ss')}" />
+              <attr sel="div/p" th:text="${childComment.content}" />
+              <attr sel="button" th:if="${#authorization.expression('isAuthenticated()')} and ${childComment.userId} == ${#authentication.name}" />
+            </attr>
+          </attr>
+        </attr>
       </attr>
       <attr sel=".parent-comment-id" th:name="parentCommentId" th:value="${articleComment.id}" />
     </attr>
