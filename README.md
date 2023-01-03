@@ -43,6 +43,14 @@ Spring Boot
 
 *  https://project-board-uno.herokuapp.com/
 
+## 강의 찾아가기
+
+게시판 서비스는 강의와 공부 목적으로 만들어진 프로젝트입니다.
+따라서 강의의 어떤 시점으로든 코드를 찾아가서 쉽게 관찰할 수 있도록 되어 있습니다.
+특정 강의 시점의 소스코드를 좀 더 편리하게 확인하고 싶다면 릴리즈 탭을 확인해 보세요.
+
+* https://github.com/djkeh/fastcampus-project-board/releases
+
 ## 질문, 건의
 
 프로젝트에 관해 궁금하신 점이나 건의 사항이 있으시다면 아래 항목을 이용해 주세요.
