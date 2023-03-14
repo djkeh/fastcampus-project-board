@@ -7,7 +7,7 @@ insert into user_account (user_id, user_password, nickname, email, memo, created
 ('uno2', '{noop}asdf1234', 'Uno2', 'uno2@mail.com', 'I am Uno2.', now(), 'uno2', now(), 'uno2')
 ;
 insert into user_account (user_id, user_password, nickname, email, memo, created_at, created_by, modified_at, modified_by) values
-('uno3', '{noop}asdf1234', 'Uno3', 'uno2@mail.com', 'I am Uno3.', now(), 'uno3', now(), 'uno3')
+('uno3', '{noop}asdf1234', 'Uno3', 'uno3@mail.com', 'I am Uno3.', now(), 'uno3', now(), 'uno3')
 ;
 
 -- 123 게시글
