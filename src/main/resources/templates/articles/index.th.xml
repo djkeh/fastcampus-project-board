@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <thlogic>
-  <attr sel="#header" th:replace="header :: header" />
-  <attr sel="#footer" th:replace="footer :: footer" />
+  <attr sel="#header" th:replace="~{header :: header}" />
+  <attr sel="#footer" th:replace="~{footer :: footer}" />
 
   <attr sel="main" th:object="${articles}">
     <attr sel="#search-form" th:action="@{/articles}" th:method="get" />
