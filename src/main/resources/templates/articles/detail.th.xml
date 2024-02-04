@@ -36,7 +36,7 @@
           <attr sel="div/p" th:text="${articleComment.content}" />
           <attr sel="button" th:if="${#authorization.expression('isAuthenticated()')} and ${articleComment.userId} == ${#authentication.name}" />
         </attr>
-        <attr sel="ul" th:if="${!articleComment.childComments.isEmpty}" th:remove="all-but-first">
+        <attr sel="ul" th:if="${!articleComment.childComments.isEmpty()}" th:remove="all-but-first">
           <attr sel=".child-comment[0]" th:each="childComment : ${articleComment.childComments}">
             <attr sel=".comment-delete-form" th:action="'/comments/' + ${childComment.id} + '/delete'" th:method="post">
               <attr sel="div/strong" th:text="${childComment.nickname}" />
