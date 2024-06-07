@@ -18,8 +18,7 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.BDDMockito.then;
+import static org.mockito.BDDMockito.*;
 
 @DisplayName("비즈니스 로직 - 해시태그")
 @ExtendWith(MockitoExtension.class)
@@ -103,4 +102,20 @@ class HashtagServiceTest {
         then(hashtagRepository).should().findByHashtagNameIn(hashtagNames);
     }
 
+    @DisplayName("연관된 게시글이 없는 해시태그 ID가 주어지면, 해시태그를 삭제한다.")
+    @Test
+    void givenHashtagId_whenDeletingHashtagWithoutRelevantArticle_thenDeletesHashtagOnly() {
+        // Given
+        Long hashtagId = 1L;
+        Hashtag hashtag = Hashtag.of("java");
+        given(hashtagRepository.getReferenceById(hashtagId)).willReturn(hashtag);
+        willDoNothing().given(hashtagRepository).delete(hashtag);
+
+        // When
+        sut.deleteHashtagWithoutArticles(hashtagId);
+
+        // Then
+        then(hashtagRepository).should().getReferenceById(hashtagId);
+        then(hashtagRepository).should().delete(hashtag);
+    }
 }
