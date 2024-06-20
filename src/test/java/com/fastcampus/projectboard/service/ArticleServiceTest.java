@@ -237,6 +237,29 @@ class ArticleServiceTest {
                 .containsExactlyInAnyOrderElementsOf(expectedHashtagNames);
     }
 
+    @DisplayName("게시글 정보와 해시태그를 기록할 때, 해시태그의 대소문자를 무시한다.")
+    @Test
+    void givenArticleInfo_whenSavingArticleAndItsHashtags_thenIgnoreCaseOfHashtags() {
+        // Given
+        Set<String> expectedHashtagNames = Set.of("java", "Spring");
+        Set<Hashtag> expectedExistingHashtags = new HashSet<>(List.of(createHashtag(1L, "java"), createHashtag(2L, "spring")));
+        ArgumentCaptor<Article> articleCaptor = ArgumentCaptor.forClass(Article.class);
+
+        given(userAccountRepository.getReferenceById(any())).willReturn(createUserAccount());
+        given(hashtagService.parseHashtagNames(any())).willReturn(expectedHashtagNames);
+        given(hashtagService.findHashtagsByNames(expectedHashtagNames)).willReturn(expectedExistingHashtags);
+        given(articleRepository.save(any(Article.class))).willReturn(createArticle());
+
+        // When
+        sut.saveArticle(createArticleDto());
+
+        // Then
+        then(articleRepository).should().save(articleCaptor.capture());
+        assertThat(articleCaptor.getValue().getHashtags())
+                .extracting("hashtagName")
+                .containsExactlyInAnyOrder("java", "spring");
+    }
+
     @DisplayName("게시글의 수정 정보를 입력하면, 게시글을 수정한다.")
     @Test
     void givenModifiedArticleInfo_whenUpdatingArticle_thenUpdatesArticle() {
