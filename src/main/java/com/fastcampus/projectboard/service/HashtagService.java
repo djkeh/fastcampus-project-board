@@ -33,7 +33,7 @@ public class HashtagService {
         Set<String> result = new HashSet<>();
 
         while (matcher.find()) {
-            result.add(matcher.group().replace("#", ""));
+            result.add(matcher.group().replace("#", "").toLowerCase());
         }
 
         return Set.copyOf(result);

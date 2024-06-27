@@ -1,5 +1,6 @@
 package com.fastcampus.projectboard.service;
 
+import com.fastcampus.projectboard.domain.Article;
 import com.fastcampus.projectboard.domain.Hashtag;
 import com.fastcampus.projectboard.repository.HashtagRepository;
 import org.junit.jupiter.api.DisplayName;
@@ -11,15 +12,17 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.test.util.ReflectionTestUtils;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.BDDMockito.then;
+import static org.mockito.BDDMockito.*;
 
 @DisplayName("비즈니스 로직 - 해시태그")
 @ExtendWith(MockitoExtension.class)
@@ -29,10 +32,10 @@ class HashtagServiceTest {
 
     @Mock private HashtagRepository hashtagRepository;
 
-    @DisplayName("본문을 파싱하면, 해시태그 이름들을 중복 없이 반환한다.")
+    @DisplayName("본문을 파싱하면, 해시태그 이름들을 중복 없이 대소문자를 무시하고 반환한다.")
     @MethodSource
     @ParameterizedTest(name = "[{index}] \"{0}\" => {1}")
-    void givenContent_whenParsing_thenReturnsUniqueHashtagNames(String input, Set<String> expected) {
+    void givenContent_whenParsing_thenReturnsUniqueHashtagNamesIgnoringCase(String input, Set<String> expected) {
         // Given
 
         // When
@@ -43,7 +46,7 @@ class HashtagServiceTest {
         then(hashtagRepository).shouldHaveNoInteractions();
     }
 
-    static Stream<Arguments> givenContent_whenParsing_thenReturnsUniqueHashtagNames() {
+    static Stream<Arguments> givenContent_whenParsing_thenReturnsUniqueHashtagNamesIgnoringCase() {
         return Stream.of(
                 arguments(null, Set.of()),
                 arguments("", Set.of()),
@@ -55,6 +58,7 @@ class HashtagServiceTest {
                 arguments("java#", Set.of()),
                 arguments("ja#va", Set.of("va")),
                 arguments("#java", Set.of("java")),
+                arguments("#Java", Set.of("java")),
                 arguments("#java_spring", Set.of("java_spring")),
                 arguments("#java-spring", Set.of("java")),
                 arguments("#_java_spring", Set.of("_java_spring")),
@@ -62,6 +66,7 @@ class HashtagServiceTest {
                 arguments("#_java_spring__", Set.of("_java_spring__")),
                 arguments("#java#spring", Set.of("java", "spring")),
                 arguments("#java #spring", Set.of("java", "spring")),
+                arguments("#java #Spring", Set.of("java", "spring")),
                 arguments("#java  #spring", Set.of("java", "spring")),
                 arguments("#java   #spring", Set.of("java", "spring")),
                 arguments("#java     #spring", Set.of("java", "spring")),
@@ -77,6 +82,7 @@ class HashtagServiceTest {
                 arguments("   #java,? #spring  ...  #부트 ", Set.of("java", "spring", "부트")),
                 arguments("#java#java#spring#부트", Set.of("java", "spring", "부트")),
                 arguments("#java#java#java#spring#부트", Set.of("java", "spring", "부트")),
+                arguments("#java#JAVA#Java#sPRINg#부트", Set.of("java", "spring", "부트")),
                 arguments("#java#spring#java#부트#java", Set.of("java", "spring", "부트")),
                 arguments("#java#스프링 아주 긴 글~~~~~~~~~~~~~~~~~~~~~", Set.of("java", "스프링")),
                 arguments("아주 긴 글~~~~~~~~~~~~~~~~~~~~~#java#스프링", Set.of("java", "스프링")),
@@ -103,4 +109,52 @@ class HashtagServiceTest {
         then(hashtagRepository).should().findByHashtagNameIn(hashtagNames);
     }
 
+    @DisplayName("연관된 게시글이 없는 해시태그 ID가 주어지면, 해시태그를 삭제한다.")
+    @Test
+    void givenHashtagId_whenDeletingHashtagWithoutRelevantArticle_thenDeletesHashtagOnly() {
+        // Given
+        Long hashtagId = 1L;
+        Hashtag hashtag = Hashtag.of("java");
+        given(hashtagRepository.getReferenceById(hashtagId)).willReturn(hashtag);
+        willDoNothing().given(hashtagRepository).delete(hashtag);
+
+        // When
+        sut.deleteHashtagWithoutArticles(hashtagId);
+
+        // Then
+        then(hashtagRepository).should().getReferenceById(hashtagId);
+        then(hashtagRepository).should().delete(hashtag);
+    }
+
+    @DisplayName("연관된 게시글이 있는 해시태그 ID가 주어지면, 해시태그를 삭제하지 않는다.")
+    @Test
+    void givenHashtagId_whenDeletingHashtagWithRelevantArticle_thenDoesNotDeleteHashtag() {
+        // Given
+        Long hashtagId = 1L;
+        Hashtag hashtag = Hashtag.of("java");
+        ReflectionTestUtils.setField(hashtag, "articles", Set.of(Article.of(null, null, null)));
+        given(hashtagRepository.getReferenceById(hashtagId)).willReturn(hashtag);
+
+        // When
+        sut.deleteHashtagWithoutArticles(hashtagId);
+
+        // Then
+        then(hashtagRepository).should().getReferenceById(hashtagId);
+        then(hashtagRepository).should(times(0)).delete(hashtag);
+    }
+
+    @DisplayName("존재하지 않는 해시태그 ID가 주어지면, 예외를 던진다.")
+    @Test
+    void givenNonexistentHashtagId_whenDeleting_thenThrowsException() {
+        // Given
+        Long hashtagId = -123L;
+        given(hashtagRepository.getReferenceById(hashtagId)).willThrow(RuntimeException.class);
+
+        // When
+        Throwable t = catchThrowable(() -> sut.deleteHashtagWithoutArticles(hashtagId));
+
+        // Then
+        assertThat(t).isInstanceOf(RuntimeException.class);
+        then(hashtagRepository).should().getReferenceById(hashtagId);
+    }
 }
