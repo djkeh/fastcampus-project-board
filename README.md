@@ -51,9 +51,7 @@ Spring Boot
 
 프로젝트에 관해 궁금하신 점이나 건의 사항이 있으시다면 아래 항목을 이용해 주세요.
 
-* 질문
-  * 10개 프로젝트로 시작하는 백엔드 웹개발: https://fastcampus.co.kr/qna/234959/1
-  * 10개 프로젝트로 완성하는 백엔드 웹개발: https://fastcampus.co.kr/qna/211368/1
+* 질문: https://github.com/djkeh/fastcampus-project-board/discussions
 * 버그 리포트, 제안 사항: https://github.com/djkeh/fastcampus-project-board/issues
 
 ## Reference
