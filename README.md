@@ -1,6 +1,6 @@
 # 게시판 서비스
 
-[![GitKraken shield](https://img.shields.io/badge/GitKraken-Legendary%20Git%20Tools-teal?style=plastic&logo=gitkraken)](http://gitkraken.link/uno)
+[![GitKraken shield](https://img.shields.io/badge/GitKraken-Legendary%20Git%20Tools-teal?style=plastic&logo=gitkraken)](https://gitkraken.cello.so/rcr7uWnNUdm)
 
 가장 기본적이고 보편적인 게시판 기능을 둘러볼 수 있는 서비스입니다. 2022년 6월 기준 가장 최신의 스프링 부트와 관련 기술들, 자바 17 기능들, 개발 도구들을 경험할 수 있도록 만들어졌습니다. [어드민 프로젝트](https://github.com/djkeh/fastcampus-project-board-admin)의 개발과 기능 사용은 이 프로젝트와 연관이 있습니다.
 
