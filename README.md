@@ -7,7 +7,7 @@
 이 서비스는 [패스트캠퍼스](https://fastcampus.co.kr/)의 다음 강의용 프로젝트로 사용되었습니다.
 
 * [10개 프로젝트로 시작하는 백엔드 웹개발 : 신입 개발자 취업 집중반 (w. Java/Spring Boot)](https://fastcampus.co.kr/dev_online_javaspring)
-* [10개 프로젝트로 완성하는 백엔드 웹개발(Java/Spring)](https://fastcampus.co.kr/dev_online_befinal)
+* 10개 프로젝트로 완성하는 백엔드 웹개발(Java/Spring) - 공개 종료
 
 ## 개발 환경
 
