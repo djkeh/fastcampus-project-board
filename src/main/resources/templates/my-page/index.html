@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Uno Kim">
+  <title>마이 페이지</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+
+<body>
+  <header id="header">
+    헤더 삽입부
+    <hr>
+  </header>
+
+  <main id="my-page-main" class="container py-5">
+    <header class="pb-3 mb-4 border-bottom">
+      <h1 class="display-5 fw-bold">내 정보</h1>
+    </header>
+
+    <div class="row align-items-md-stretch">
+      <div class="col-md-6">
+        <div class="h-100 p-5 text-bg-dark rounded-3">
+          <h2>프로필 요약</h2>
+          <p>회원님의 가입 정보와 계정 상태를 확인할 수 있습니다.</p>
+          <hr>
+          <div class="mb-3">
+            <label class="text-muted small d-block">닉네임</label>
+            <span id="nickname" class="fs-4">Uno</span>
+          </div>
+          <div class="mb-3">
+            <label class="text-muted small d-block">이메일</label>
+            <span id="email" class="fs-4">uno@mail.com</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="h-100 p-5 bg-light border rounded-3">
+          <h2>상세 정보</h2>
+          <div class="mb-3">
+            <label class="text-muted small d-block">사용자 ID</label>
+            <span id="user-id" class="fs-5">uno</span>
+          </div>
+          <div class="mb-3">
+            <label class="text-muted small d-block">메모</label>
+            <p id="memo" class="fs-5">작성된 메모가 없습니다.</p>
+          </div>
+          <div class="mb-3">
+            <label class="text-muted small d-block">권한</label>
+            <div id="authorities">
+              <span class="badge bg-secondary">ROLE_USER</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-4">
+      <a id="back-to-home" href="/" class="btn btn-outline-secondary" role="button">홈으로 돌아가기</a>
+    </div>
+  </main>
+
+  <footer id="footer">
+    <hr>
+    푸터 삽입부
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>

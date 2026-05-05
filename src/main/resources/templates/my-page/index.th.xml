@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<thlogic>
+  <attr sel="#header" th:replace="~{header :: header}" />
+  <attr sel="#footer" th:replace="~{footer :: footer}" />
+
+  <attr sel="#my-page-main">
+    <attr sel="#nickname" sec:authentication="principal.nickname" />
+    <attr sel="#email" sec:authentication="principal.email" />
+    <attr sel="#user-id" sec:authentication="name" />
+    <attr sel="#memo" sec:authentication="principal.memo" />
+    <attr sel="#authorities" th:remove="all-but-first">
+      <attr sel="span" th:each="authority : ${#authentication.authorities}" th:text="${authority.authority}" />
+    </attr>
+    <attr sel="#back-to-home" th:href="@{/}" />
+  </attr>
+</thlogic>
+
